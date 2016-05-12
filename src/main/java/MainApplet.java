@@ -1,3 +1,5 @@
+package main.java;
+
 
 
 import java.awt.event.KeyEvent;
@@ -21,9 +23,9 @@ public class MainApplet extends PApplet{
 	private String file = "starwars-episode-";
 	private String file2 ="-interactions.json";
 	private int level =1;
-	private JSONObject[] datas;
-	private JSONArray[] nodes;
-	private JSONArray[] links;
+	private JSONObject datas;
+	private JSONArray nodes;
+	private JSONArray links;
 	private final static int width = 1000, height = 670;
 	private ArrayList<Character> characters=new  ArrayList<Character>();
 	private boolean mt;
@@ -31,6 +33,7 @@ public class MainApplet extends PApplet{
 	private Minim minim;
 	private AudioPlayer media;
 	private Ani animation;
+	private int circleX,circleY;
 	public void setup() {
 
 		size(width, height);
@@ -41,9 +44,7 @@ public class MainApplet extends PApplet{
 		//media.play();
 		Ani.init(this);
 		button=new ControlP5(this);
-		datas=new JSONObject[8];
-		links=new JSONArray[8];
-		nodes=new JSONArray[8];
+	
 		button.addButton("ButtonAdd").setLabel("ADD ALL Nodes")
 									 .setPosition(600, 40) 	
 									 .setSize(150, 40);
@@ -96,11 +97,29 @@ public class MainApplet extends PApplet{
 	
 
 	private void loadData(){
-		/*for(int i=1;i<=7;i++){
-			datas[i]=loadJSONObject(path + file + Integer.toString(i) + file2);
-			nodes[i]=datas[i].getJSONArray("nodes");
-			links[i]=datas[i].getJSONArray("links");
-		}*/
+		for(int i=1;i<=7;i++){
+			file = new String("starwars-episode-" +i+ "-interactions.json");
+			datas = loadJSONObject(path + file);
+			nodes = datas.getJSONArray("nodes");
+			links = datas.getJSONArray("links");
+		}
+		circleX=50;
+		circleY=50;
+		int i;
+		for(i=0;i<nodes.size();i++){
+			JSONObject node=nodes.getJSONObject(i);
+			String name=node.getString("name");
+			String color=node.getString("colour");
+			if (characters.size() % 10 != 9) {
+				characters.add(new Character(this, name, color, circleX, circleY));
+				circleY += 60;
+			} else {
+				characters.add(new Character(this, name, color, circleX, circleY));
+				circleX += 60;
+				circleY = 50;
+			}
+		}
+		
 	}
 	private void AddToCircle(){
 		

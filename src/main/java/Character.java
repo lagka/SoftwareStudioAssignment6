@@ -1,4 +1,4 @@
-//package main.java;
+package main.java;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,11 +18,11 @@ public class Character {
 	private HashMap<Character, Integer> relations;
 	private boolean in_circle;
 
-	public Character(MainApplet parent, String name, int color, float x, float y){
+	public Character(MainApplet parent, String name, String color, float x, float y){
 
 		this.parent = parent;
 		this.name = name;
-		this.color = color;
+		this.color = (int) Long.parseLong(color.replace("#", ""), 16);
 		this.init_x = x;
 		this.init_y = y;
 		this.cur_x = this.init_x;
