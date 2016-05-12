@@ -2,5 +2,15 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/Lab8Practice(Solution)/lib/Ani.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/Lab8Practice(Solution)/lib/controlP5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/Lab8Practice(Solution)/lib/core.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/Lab8Practice(Solution)/lib/jl1.0.1.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/Lab8Practice(Solution)/lib/jsminim.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/Lab8Practice(Solution)/lib/minim.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/Lab8Practice(Solution)/lib/mp3spi1.9.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/Lab8Practice(Solution)/lib/tritonus_aos.jar"/>
+	<classpathentry kind="lib" path="C:/Users/User/Desktop/Lab8Practice(Solution)/lib/tritonus_share.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
