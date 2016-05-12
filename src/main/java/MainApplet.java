@@ -29,8 +29,7 @@ public class MainApplet extends PApplet {
 	private ArrayList<Character> characters;
 	private Character locked, hovered;
 	private boolean is_hover;
-	//private ArrayList<Character> add_order;
-	//private boolean same = false;
+
 	
 	public void setup() {
 		size(width, height);
@@ -71,7 +70,7 @@ public class MainApplet extends PApplet {
 				hovered.set_radius(50);
 				hovered.set_weight(3);
 				c.set_hover(true);
-				//System.out.println(c.get_relations().get(c));
+			
 			}
 			else {
 				c.set_hover(false);
@@ -104,7 +103,7 @@ public class MainApplet extends PApplet {
 		for(Character c : characters) {
 			if(!c.get_in_circle()) {
 				c.set_in_circle(true);
-				//add_order.add(c);
+				
 			}
 		}
 		add_to_circle();
@@ -116,11 +115,11 @@ public class MainApplet extends PApplet {
 			ani = Ani.to(c, (float) 1, "cur_y", c.get_init_y());
 			c.set_in_circle(false);
 		}
-		//add_order.clear();
+		
 	}
 	
 	private void loadData(){
-		//add_order = new ArrayList<Character>();
+		
 		characters = new ArrayList<Character>();
 		file = "starwars-episode-" + level + "-interactions.json";
 		data = loadJSONObject(path + file);
@@ -193,22 +192,19 @@ public class MainApplet extends PApplet {
 	
 	
 	public void mouseReleased() {
-		//same = false;
+		
 		if(locked != null) {
 			if(dist(locked.cur_x, locked.cur_y , width / 2, height / 2 + 30) < 250) {
 				
 				locked.set_in_circle(true);
-				/*for(Character c : add_order) {
-					if(c.get_name() == locked.get_name()) same = true;
-				}
-				if(same == false) add_order.add(locked);*/
+				
 				add_to_circle();
 			}
 			else {
 				locked.set_in_circle(false);
 				ani = Ani.to(locked, (float)1.0, "cur_x", locked.get_init_x());
 				ani = Ani.to(locked, (float)1.0, "cur_y", locked.get_init_y());
-				//add_order.remove(locked);
+			
 				add_to_circle();
 			}
 		}
