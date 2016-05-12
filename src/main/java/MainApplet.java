@@ -188,6 +188,10 @@ public class MainApplet extends PApplet {
 		}
 	}
 
+	
+	
+	
+	
 	public void mouseReleased() {
 		//same = false;
 		if(locked != null) {
