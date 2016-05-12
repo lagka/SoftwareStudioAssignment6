@@ -5,16 +5,13 @@ import java.util.HashMap;
 public class Character {
 
 	private MainApplet parent;
-	public String name;
-	float cur_x, cur_y;
-	float init_x, init_y; // Initial position of X and Y
+	private String name;
+	public float cur_x, cur_y;
+	private float init_x, init_y;
 	private int color;
-	public int diameter = 40;
-	boolean inBigCircle = false, hover = false;
-	
-	//private ArrayList<Character> targets; // store the target
-	//private ArrayList<Character> sources; // store the source
-	public int weight = 0; // the weight of line
+	private int radius = 40;
+	private boolean in_circle = false, hover = false;
+	private int weight = 0;
 	private HashMap<Character, Integer> relations;
 
 	@SuppressWarnings("static-access")
@@ -25,22 +22,16 @@ public class Character {
 		this.cur_y = y + 30;
 		this.init_x = this.cur_x;
 		this.init_y = this.cur_y;
-		this.color = this.parent.unhex(color.substring(1));
-		//targets = new ArrayList<Character>();
-		//sources = new ArrayList<Character>();
+		this.color = (int) Long.parseLong(color.replace("#", ""), 16);
 		this.relations = new HashMap<Character, Integer>();
 	}
 
 	public void display() {
 		parent.noStroke();
 		parent.fill(color);
-		parent.ellipse(this.cur_x, this.cur_y, diameter, diameter);
-		// if inBigCircle equals to true, do the network
-		if (inBigCircle) {
-			// For the draw two times.
-			// I want to check the node have something to do with which nodes.
-			// This is the reason why I draw the line from target to source
-			// and from source to target.
+		parent.ellipse(this.cur_x, this.cur_y, radius, radius);
+		
+		if (in_circle) {
 			for (Character c : relations.keySet()) {
 				parent.noFill();
 				parent.stroke(0);
@@ -51,25 +42,29 @@ public class Character {
 					
 				float a = (600 + (cur_x + c.cur_x) / 2) / 2;
 				float b = (355 + (cur_y + c.cur_y) / 2) / 2;
-				if (c.inBigCircle)
+				if (c.in_circle)
 					parent.bezier(cur_x, cur_y, a, b, a, b, c.cur_x, c.cur_y);
 			}
 		}
 	}
 
-	// return the node's name
-	public String getName() {
+	
+	public String get_name() {
 		return this.name;
 	}
 
-	// return the initial position of X
-	public float getInitX() {
+	
+	public float get_init_x() {
 		return init_x;
 	}
 
-	// return the initial position of Y
-	public float getInitY() {
+	
+	public float get_init_y() {
 		return init_y;
+	}
+	
+	public boolean get_in_circle() {
+		return this.in_circle;
 	}
 	
 	public HashMap<Character, Integer> get_relations()
@@ -77,22 +72,27 @@ public class Character {
 		return this.relations;
 	}
 
-	// set the diameter of the node
-	public void setDiameter(int diameter) {
-		this.diameter = diameter;
+
+	public void set_radius(int radius) {
+		this.radius = radius;
 	}
 
-	// set the weight of line
-	public void setWeight(int weight) {
+	
+	public void set_weight(int weight) {
 		this.weight = weight;
 	}
 	
 	public void set_hover(boolean b) {
 		this.hover = b;
 	}
+	
+	public void set_in_circle(boolean b) {
+		this.in_circle = b;
+	}
 
-	// add the target of JSONObject to the list(targets)
-	public void addTarget(Character ch, int value) {
+	
+	public void add_target(Character ch, int value) {
 		this.relations.put(ch, value);
 	}
+
 }
