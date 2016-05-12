@@ -27,9 +27,7 @@ public class Character {
 	}
 
 	public void display() {
-		parent.noStroke();
-		parent.fill(color);
-		parent.ellipse(this.cur_x, this.cur_y, radius, radius);
+	
 		
 		if (in_circle) {
 			for (Character c : relations.keySet()) {
@@ -45,7 +43,10 @@ public class Character {
 				if (c.in_circle)
 					parent.bezier(cur_x, cur_y, a, b, a, b, c.cur_x, c.cur_y);
 			}
-		}
+		}	
+		parent.noStroke();
+		parent.fill(color);
+		parent.ellipse(this.cur_x, this.cur_y, radius, radius);
 	}
 
 	
